@@ -478,6 +478,58 @@
 
     /* ── NETWORK ── */
     #network { background: var(--linen); }
+    .network-dashboard {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+      align-items: start;
+    }
+    .dashboard-left {}
+    .dashboard-intro {
+      font-size: 1.05rem;
+      color: var(--mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .dashboard-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .stat-box {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1.5px solid var(--rose);
+      transition: all 0.3s;
+    }
+    .stat-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(212,160,154,0.2);
+      border-color: var(--mauve);
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--espresso);
+      margin-bottom: 4px;
+    }
+    .stat-desc {
+      font-size: 0.85rem;
+      color: var(--mid);
+      font-weight: 300;
+    }
     .network-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1018,8 +1070,34 @@
 <!-- NETWORK -->
 <section id="network">
   <p class="section-label">My Network</p>
-  <h2 class="section-title">The Power of<br><em>Connection</em></h2>
-  <p class="section-desc">Over years of working at the intersection of fintech, policy, and partnerships, Andralynn has built a remarkable network of global leaders — from central bank governors to fintech CEOs, thought leaders to investors.</p>
+  <h2 class="section-title">The Global<br><em>Fintech Corridor</em></h2>
+
+  <!-- Network DNA Dashboard -->
+  <div class="network-dashboard">
+    <div class="dashboard-left">
+      <p class="dashboard-intro">My network isn't just a list of names; it's a living map of the global financial corridor. Over the last six years, I've intentionally built a 'tribe' that sits at the intersection of two worlds: the structured, high-stakes environment of central banking and the high-velocity world of fintech innovation.</p>
+      <p class="dashboard-intro">This gives me a perspective that few have: I see the gaps between regulation and reality, and I know exactly who to call to bridge them.</p>
+    </div>
+    <div class="dashboard-right">
+      <div class="stat-box">
+        <p class="stat-label">Seniority</p>
+        <p class="stat-value">70%+</p>
+        <p class="stat-desc">C-Suite & Executive</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-label">Geographic Reach</p>
+        <p class="stat-value">SG 60% | DE 40%</p>
+        <p class="stat-desc">Singapore Hub to Europe</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-label">Ecosystem Mix</p>
+        <p class="stat-value">40 | 40 | 20</p>
+        <p class="stat-desc">Policy · Fintech · Community</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-desc" style="margin-top: 60px; margin-bottom: 40px;">Here are the 10 leaders who best represent the DNA of my network:</p>
 
   <div class="network-grid">
 
