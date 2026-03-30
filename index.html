@@ -31,6 +31,19 @@
       color: var(--text);
       font-size: 16px;
       line-height: 1.7;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" seed="2" /></filter><rect width="100" height="100" fill="%23F5F0EB" filter="url(%23noise)" opacity="0.03"/></svg>');
+      pointer-events: none;
+      z-index: 1;
+      mix-blend-mode: overlay;
     }
 
     /* ── NAV ── */
@@ -166,6 +179,63 @@
       object-fit: cover;
       object-position: center 20%;
       display: block;
+    }
+    .currently-in-badge {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(196, 133, 126, 0.2);
+      animation: slideInUp 0.6s ease-out 0.3s both;
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #4CAF50;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .badge-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .badge-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      font-weight: 500;
+    }
+    .badge-location {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--espresso);
+    }
+    .badge-time {
+      font-size: 0.8rem;
+      color: var(--mid);
+      font-weight: 400;
+    }
+    .badge-weather {
+      font-size: 0.75rem;
+      color: var(--taupe);
+      font-weight: 300;
     }
 
     /* ── SECTION BASE ── */
@@ -474,10 +544,60 @@
 
     /* ── EUROPE HIGHLIGHTS ── */
     #berlin-highlights { background: var(--cream); }
+    .highlights-container {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
     .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+    }
+    .highlights-grid::-webkit-scrollbar {
+      height: 6px;
+    }
+    .highlights-grid::-webkit-scrollbar-track {
+      background: var(--linen);
+      border-radius: 10px;
+    }
+    .highlights-grid::-webkit-scrollbar-thumb {
+      background: var(--rose);
+      border-radius: 10px;
+    }
+    .highlights-grid::-webkit-scrollbar-thumb:hover {
+      background: var(--mauve);
+    }
+    .slider-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .slider-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--rose);
+      background: transparent;
+      color: var(--espresso);
+      cursor: pointer;
+      transition: all 0.25s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider-btn:hover {
+      background: var(--blush);
+      border-color: var(--mauve);
+    }
+    .slider-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
     }
     .highlight-card {
       background: var(--linen);
@@ -488,9 +608,12 @@
       cursor: pointer;
       text-decoration: none;
       display: block;
+      flex: 0 0 320px;
+      min-width: 320px;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.25s;
+      scroll-snap-align: start;
     }
     .highlight-card.visible { opacity: 1; transform: translateY(0); }
     .highlight-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(196,133,126,0.2); }
@@ -685,9 +808,10 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#berlin-story">Berlin</a></li>
+        <li><a href="#about">About</a></li>
     <li><a href="#journey">Journey</a></li>
-    <li><a href="#network">Network</a></li>
     <li><a href="#berlin-highlights">Europe Highlights</a></li>
+    <li><a href="musings.html">Musings</a></li>
     <li><a href="#partnerships">Partnerships</a></li>
     <li><a href="#connect" class="nav-cta">Connect</a></li>
   </ul>
@@ -710,6 +834,15 @@
   </div>
   <div class="hero-right">
     <img src="hero-photo.png" alt="Andralynn Tan on the Eiserner Steg love locks bridge, Frankfurt" class="hero-photo" />
+    <div class="currently-in-badge">
+      <div class="badge-dot"></div>
+      <div class="badge-content">
+        <p class="badge-label">Currently in</p>
+        <p class="badge-location">🇩🇪 Berlin, Germany</p>
+        <p class="badge-time" id="berlin-time">--:-- --</p>
+        <p class="badge-weather" id="berlin-weather">Loading...</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -971,7 +1104,8 @@
   <h2 class="section-title">Europe<br><em>Highlights</em></h2>
   <p class="section-desc">A showcase of key moments, events, and milestones from Andralynn's life and work in Europe. Click any card to view the original post.</p>
 
-  <div class="highlights-grid">
+  <div class="highlights-container">
+    <div class="highlights-grid" id="highlights-slider">
 
     <a href="https://www.linkedin.com/feed/update/urn:li:activity:7437533855105912832/" target="_blank" rel="noopener" class="highlight-card">
       <img src="highlights/appia-report-cover.webp" class="highlight-card-img" alt="Appia Report" />
@@ -1033,6 +1167,11 @@
       </div>
     </a>
 
+    </div>
+  </div>
+  <div class="slider-nav">
+    <button class="slider-btn" id="slider-prev" aria-label="Previous">←</button>
+    <button class="slider-btn" id="slider-next" aria-label="Next">→</button>
   </div>
 </section>
 
@@ -1053,6 +1192,13 @@
 
     <div class="partnership-card">
       <span class="partnership-icon">📅</span>
+      <h3 class="partnership-title">Book a Meeting</h3>
+      <p class="partnership-desc">Let's chat about partnerships, ecosystem building, or just grab coffee. Schedule a time that works for you.</p>
+      <a href="https://gftn.co/meetings/andralynn" target="_blank" rel="noopener" class="partnership-link">Schedule Now</a>
+    </div>
+
+    <div class="partnership-card">
+      <span class="partnership-icon">🎤</span>
       <h3 class="partnership-title">Organise a Meet-Up</h3>
       <p class="partnership-desc">Want to organise a fintech meet-up, networking dinner, or community event in Berlin or Singapore? Andralynn has years of experience running large-scale events and loves bringing people together.</p>
       <a href="https://t.me/andralynntan" target="_blank" rel="noopener" class="partnership-link">Plan Together</a>
@@ -1138,7 +1284,76 @@
   document.querySelectorAll('.timeline-item').forEach((item, i) => {
     item.style.transitionDelay = `${i * 0.07}s`;
   });
+
+  // Update Berlin time and weather
+  function updateBerlinTime() {
+    const timeEl = document.getElementById('berlin-time');
+    const weatherEl = document.getElementById('berlin-weather');
+    if (!timeEl) return;
+    
+    const berlinTime = new Date().toLocaleString('en-US', {
+      timeZone: 'Europe/Berlin',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+    timeEl.textContent = berlinTime;
+  }
+  
+  function updateWeather() {
+    const weatherEl = document.getElementById('berlin-weather');
+    if (!weatherEl) return;
+    
+    // Fetch weather from Open-Meteo (free, no API key needed)
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.405&current=temperature_2m,weather_code&temperature_unit=celsius')
+      .then(r => r.json())
+      .then(data => {
+        const temp = Math.round(data.current.temperature_2m);
+        const code = data.current.weather_code;
+        let emoji = '🌤️';
+        if (code === 0 || code === 1) emoji = '☀️';
+        else if (code === 2 || code === 3) emoji = '⛅';
+        else if (code >= 45 && code <= 48) emoji = '🌫️';
+        else if (code >= 51 && code <= 67) emoji = '🌧️';
+        else if (code >= 71 && code <= 77) emoji = '❄️';
+        else if (code >= 80 && code <= 82) emoji = '⛈️';
+        weatherEl.textContent = `${emoji} ${temp}°C`;
+      })
+      .catch(() => {
+        weatherEl.textContent = 'Weather unavailable';
+      });
+  }
+  
+  updateBerlinTime();
+  updateWeather();
+  setInterval(updateBerlinTime, 60000);
+  setInterval(updateWeather, 600000);
 </script>
 
 </body>
 </html>
+
+  // Film-strip slider navigation
+  const slider = document.getElementById('highlights-slider');
+  const prevBtn = document.getElementById('slider-prev');
+  const nextBtn = document.getElementById('slider-next');
+  
+  if (slider && prevBtn && nextBtn) {
+    const cardWidth = 344;
+    
+    prevBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+    
+    function updateButtonStates() {
+      prevBtn.disabled = slider.scrollLeft <= 0;
+      nextBtn.disabled = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10;
+    }
+    
+    slider.addEventListener('scroll', updateButtonStates);
+    updateButtonStates();
+  }

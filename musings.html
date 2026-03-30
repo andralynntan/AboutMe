@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andra's Musings & Fintech Digest — Andralynn Tan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:   #F5F0EB;
+      --linen:   #EDE6DE;
+      --blush:   #E8C9C1;
+      --rose:    #D4A09A;
+      --mauve:   #C4857E;
+      --taupe:   #A68B82;
+      --espresso:#5C3D38;
+      --text:    #3A2A27;
+      --mid:     #7A5C57;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(245,240,235,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196,133,126,0.15);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--espresso);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--mauve); }
+
+    section { padding: 100px 80px; margin-top: 64px; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--espresso);
+      margin-bottom: 40px;
+    }
+
+    .musings-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .musing-card {
+      background: var(--linen);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid rgba(196,133,126,0.15);
+      transition: all 0.3s;
+    }
+    .musing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(196,133,126,0.15);
+    }
+    .musing-date {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 12px;
+    }
+    .musing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--espresso);
+      margin-bottom: 16px;
+    }
+    .musing-text {
+      color: var(--mid);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .digest-section {
+      background: var(--blush);
+      border-radius: 20px;
+      padding: 48px;
+      margin-top: 80px;
+    }
+    .digest-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--espresso);
+      margin-bottom: 32px;
+    }
+    .digest-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .digest-item {
+      background: rgba(255,255,255,0.6);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 3px solid var(--rose);
+    }
+    .digest-item-title {
+      font-weight: 500;
+      color: var(--espresso);
+      margin-bottom: 8px;
+    }
+    .digest-item-desc {
+      font-size: 0.95rem;
+      color: var(--mid);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--espresso);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--mauve); }
+
+    @media (max-width: 768px) {
+      .musings-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Andralynn Tan</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="musings.html" style="color: var(--mauve); font-weight: 500;">Musings</a></li>
+  </ul>
+</nav>
+
+<section>
+  <a href="index.html" class="back-link">← Back to Home</a>
+  <h1 class="section-title">Andra's Musings<br><em>& Fintech Digest</em></h1>
+  <p style="font-size: 1.05rem; color: var(--mid); max-width: 700px; margin-bottom: 60px;">Thoughts on fintech, payments, ecosystem building, and life in Berlin. A space for rambling ideas and curated insights from the world of digital finance.</p>
+
+  <div class="musings-grid">
+    <div class="musing-card">
+      <p class="musing-date">March 2026</p>
+      <h2 class="musing-title">Why Payments Matter</h2>
+      <p class="musing-text">Payments are the nervous system of the global economy. They connect people, businesses, and nations. Every transaction tells a story — and understanding those stories is key to building the future of finance.</p>
+    </div>
+
+    <div class="musing-card">
+      <p class="musing-date">February 2026</p>
+      <h2 class="musing-title">Building Bridges, Not Walls</h2>
+      <p class="musing-text">The best partnerships happen when you focus on shared values, not just shared interests. In fintech, the most powerful innovations come from bringing together diverse perspectives — from Singapore to Berlin to everywhere in between.</p>
+    </div>
+
+    <div class="musing-card">
+      <p class="musing-date">January 2026</p>
+      <h2 class="musing-title">The Run Club Revelation</h2>
+      <p class="musing-text">Berlin's run clubs taught me something about community that no conference could. When you run together, you talk. When you talk, you connect. And when you connect, magic happens. Same applies to fintech ecosystems.</p>
+    </div>
+
+    <div class="musing-card">
+      <p class="musing-date">December 2025</p>
+      <h2 class="musing-title">Treasury Teams: The Unsung Heroes</h2>
+      <p class="musing-text">My summer at Goldman Sachs showed me that treasury teams are the guardians of financial stability. They don't make headlines, but they make everything else possible. Respect to the risk managers out there.</p>
+    </div>
+  </div>
+
+  <div class="digest-section">
+    <h2 class="digest-title">📰 Fintech Minute Digest</h2>
+    <p style="color: var(--mid); margin-bottom: 32px; font-size: 1.02rem;">Quick takes on what's happening in the world of digital finance, payments, and fintech innovation.</p>
+    
+    <div class="digest-items">
+      <div class="digest-item">
+        <p class="digest-item-title">🇪🇺 Europe's Fintech Momentum</p>
+        <p class="digest-item-desc">Germany and the EU are positioning themselves as serious players in digital finance. From de:hubs to regulatory clarity, the ecosystem is maturing fast.</p>
+      </div>
+
+      <div class="digest-item">
+        <p class="digest-item-title">💳 The Future of Payments</p>
+        <p class="digest-item-desc">Real-time payments, stablecoins, and programmable money are no longer sci-fi. They're here. The question isn't "if" but "how fast" we'll adopt them.</p>
+      </div>
+
+      <div class="digest-item">
+        <p class="digest-item-title">🌉 Asia-Europe Corridor</p>
+        <p class="digest-item-desc">The most interesting fintech innovations are happening at the intersection of Asia and Europe. Cross-border payments, digital assets, and ecosystem collaboration are the new frontier.</p>
+      </div>
+
+      <div class="digest-item">
+        <p class="digest-item-title">👥 Community Over Competition</p>
+        <p class="digest-item-desc">The fintech leaders I admire aren't the ones hoarding ideas. They're the ones building communities, sharing knowledge, and lifting others up. That's where real innovation happens.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>
