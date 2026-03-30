@@ -312,84 +312,6 @@
     }
     .about-right strong { color: var(--espresso); font-weight: 500; }
 
-    /* ── STORY CAROUSEL ── */
-    .story-carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      margin: 60px auto 0;
-      padding: 0 40px;
-    }
-    .carousel-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
-    }
-    .carousel-slide {
-      display: none;
-      width: 100%;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-    .carousel-slide.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .carousel-slide img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .carousel-controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      margin-top: 32px;
-    }
-    .carousel-btn {
-      background: var(--espresso);
-      color: #fff;
-      border: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      transition: background 0.25s, transform 0.2s;
-    }
-    .carousel-btn:hover:not(:disabled) {
-      background: var(--mauve);
-      transform: scale(1.05);
-    }
-    .carousel-btn:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-    .carousel-indicators {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-    }
-    .carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--linen);
-      border: 2px solid var(--rose);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .carousel-dot.active {
-      background: var(--rose);
-    }
-
     /* ── BERLIN STORY ── */
     #berlin-story { background: var(--linen); padding: 0; }
     .berlin-hero-img {
@@ -1006,38 +928,6 @@
       <p><strong>Beyond the Office.</strong> I'm passionate about <strong>running</strong> (I once hit a 4:58 min/km pace!), building community, and helping others navigate the world of fintech and finance. Because at the end of the day, the best networks are built by people who genuinely care about each other's success.</p>
     </div>
   </div>
-  
-  <!-- Story Carousel -->
-  <div class="story-carousel-container fade-in">
-    <div class="carousel-wrapper">
-      <div class="carousel-slide active">
-        <img src="the_spark_singapore_generated.webp" alt="The Spark: Igniting a FinTech Journey at 17" />
-      </div>
-      <div class="carousel-slide">
-        <img src="the_foundation_gftn_china_generated.webp" alt="Building Bridges: From MAS to China, Forging Global Foundations" />
-      </div>
-      <div class="carousel-slide">
-        <img src="the_leap_berlin_generated.webp" alt="The Bold Move: From Singapore to Berlin, A New Chapter Unfolds" />
-      </div>
-      <div class="carousel-slide">
-        <img src="the_human_bridge_now_generated.webp" alt="The Human Bridge: Connecting Asia and Europe, People and Progress" />
-      </div>
-      <div class="carousel-slide">
-        <img src="connect_collaborate_generated.webp" alt="Lets Build the Future Together" />
-      </div>
-    </div>
-    <div class="carousel-controls">
-      <button class="carousel-btn" id="carousel-prev" aria-label="Previous slide">←</button>
-      <div class="carousel-indicators">
-        <span class="carousel-dot active" data-index="0"></span>
-        <span class="carousel-dot" data-index="1"></span>
-        <span class="carousel-dot" data-index="2"></span>
-        <span class="carousel-dot" data-index="3"></span>
-        <span class="carousel-dot" data-index="4"></span>
-      </div>
-      <button class="carousel-btn" id="carousel-next" aria-label="Next slide">→</button>
-    </div>
-  </div>
 </section>
 
 <!-- BERLIN STORY -->
@@ -1522,44 +1412,6 @@
   updateWeather();
   setInterval(updateBerlinTime, 60000);
   setInterval(updateWeather, 600000);
-  
-  // Story Carousel
-  const carouselSlides = document.querySelectorAll('.carousel-slide');
-  const carouselDots = document.querySelectorAll('.carousel-dot');
-  const carouselPrevBtn = document.getElementById('carousel-prev');
-  const carouselNextBtn = document.getElementById('carousel-next');
-  let currentSlide = 0;
-  
-  function showSlide(index) {
-    carouselSlides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-    carouselDots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
-    });
-  }
-  
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % carouselSlides.length;
-    showSlide(currentSlide);
-  }
-  
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
-    showSlide(currentSlide);
-  }
-  
-  if (carouselPrevBtn && carouselNextBtn) {
-    carouselPrevBtn.addEventListener('click', prevSlide);
-    carouselNextBtn.addEventListener('click', nextSlide);
-  }
-  
-  carouselDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      currentSlide = index;
-      showSlide(currentSlide);
-    });
-  });
 </script>
 
 </body>
